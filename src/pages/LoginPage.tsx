@@ -6,6 +6,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -16,6 +17,7 @@ import { userNotVerifiedErrorMessage } from "@/lib/utils";
 import { UserForm } from "@/utils";
 import { FormEventHandler, useState } from "react";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -134,6 +136,17 @@ const LoginPage = () => {
           </div>
         </form>
       </CardContent>
+      <CardFooter className="flex gap-4 items-center">
+        <span>or Login with</span>
+        <Button
+          onClick={() => {
+            window.location.href =
+              import.meta.env.VITE_API_KEY + "/api/auth/user/google";
+          }}
+        >
+          Google
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
