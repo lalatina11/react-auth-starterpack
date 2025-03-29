@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import RegisterSubmitButton from "@/components/SubmitButtons/RegisterSubmitButton";
 import { UserForm, validateEmail } from "@/utils";
+import AuthOption from "@/components/AuthOption";
 
 const RegisterPage = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -149,6 +151,14 @@ const RegisterPage = () => {
           </div>
         </form>
       </CardContent>
+      <CardFooter className="flex flex-col gap-4 items-center">
+        <div className="flex justify-between items-center gap-6 w-full">
+          <div className="bg-zinc-500 h-[1px] w-full" />
+          <span className="text-nowrap">or Login with</span>
+          <div className="bg-zinc-500 h-[1px] w-full" />
+        </div>
+        <AuthOption />
+      </CardFooter>
     </Card>
   );
 };

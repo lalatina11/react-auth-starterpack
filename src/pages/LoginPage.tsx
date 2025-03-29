@@ -1,10 +1,7 @@
-import { FaApple, FaGithub } from "react-icons/fa";
-
-import { FcGoogle } from "react-icons/fc";
-
 import useAuth from "@/context/useAuth";
 import { Link, Navigate } from "react-router-dom";
 
+import AuthOption from "@/components/AuthOption";
 import LoginSubmitButton from "@/components/SubmitButtons/LoginSubmitButton";
 import {
   Card,
@@ -21,7 +18,6 @@ import { userNotVerifiedErrorMessage } from "@/lib/utils";
 import { UserForm } from "@/utils";
 import { FormEventHandler, useState } from "react";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -140,45 +136,14 @@ const LoginPage = () => {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex flex-col gap-4 items-center">
-        <div className="flex justify-between items-center gap-6 w-full">
-          <div className="bg-zinc-500 h-[1px] w-full" />
-          <span className="text-nowrap">or Login with</span>
-          <div className="bg-zinc-500 h-[1px] w-full" />
-        </div>
-        <div className="grid grid-cols-3 gap-4">
-          <Button
-            className="flex gap-2 items-center cursor-pointer"
-            onClick={() => {
-              window.location.href =
-                import.meta.env.VITE_API_KEY + "/api/auth/user/google";
-            }}
-          >
-            <FcGoogle />
-            Google
-          </Button>
-          <Button
-            className="flex gap-2 items-center cursor-pointer"
-            onClick={() => {
-              window.location.href =
-                import.meta.env.VITE_API_KEY + "/api/auth/user/google";
-            }}
-          >
-            <FaGithub />
-            Github
-          </Button>
-          <Button
-            className="flex gap-2 items-center cursor-pointer"
-            onClick={() => {
-              window.location.href =
-                import.meta.env.VITE_API_KEY + "/api/auth/user/google";
-            }}
-          >
-            <FaApple />
-            Apple
-          </Button>
-        </div>
-      </CardFooter>
+        <CardFooter className="flex flex-col gap-4 items-center">
+          <div className="flex justify-between items-center gap-6 w-full">
+            <div className="bg-zinc-500 h-[1px] w-full" />
+            <span className="text-nowrap">or Login with</span>
+            <div className="bg-zinc-500 h-[1px] w-full" />
+          </div>
+          <AuthOption />
+        </CardFooter>
     </Card>
   );
 };
