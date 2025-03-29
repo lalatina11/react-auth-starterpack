@@ -19,7 +19,7 @@ const AuthOption = () => {
       className="flex gap-2 items-center cursor-pointer"
       onClick={() => {
         window.location.href =
-          import.meta.env.VITE_API_KEY + "/api/auth/user/google";
+          import.meta.env.VITE_API_KEY + "/api/auth/user/github";
       }}
     >
       <FaGithub />
