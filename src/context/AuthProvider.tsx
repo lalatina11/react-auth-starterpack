@@ -1,17 +1,19 @@
+import { GetUserSession, UserFromDB } from "@/lib/interfaces";
 import { useEffect, useState } from "react";
 import { removeCookie, setCookie } from "typescript-cookie";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null); // Change initial state
-
+  const [user, setUser] = useState<UserFromDB | null>(null);
   const getUserSession = async () => {
     const res = await fetch(
       import.meta.env.VITE_API_KEY + "/api/auth/user/get-user-session",
       { credentials: "include" }
     );
-    const { cookie } = await res.json();
-    setIsAuthenticated(!!cookie); // Convert token existence to boolean
+    const { token, user } = (await res.json()) as GetUserSession;
+    setIsAuthenticated(!!token); // Convert token existence to boolean
+    setUser(user);
   };
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import useAuth from "@/context/useAuth";
 import { toast } from "sonner";
 
 const HomePage = () => {
@@ -12,12 +13,19 @@ const HomePage = () => {
       location.replace("/login");
     }, 1500);
   };
+
+  const { user } = useAuth();
   return (
     <div>
-      <h1>Home</h1>
+      <div className="flex gap-2 items-center text-xl">
+        <span>Hello</span>
+        <span className="font-semibold">{user?.username}</span>
+      </div>
       <div className="flex gap-2 items-center ">
         <Button onClick={() => toast("Hei")}>Hei</Button>
-        <Button onClick={handleLogOutButton}>Logout</Button>
+        <Button onClick={handleLogOutButton} variant={"destructive"}>
+          Logout
+        </Button>
       </div>
     </div>
   );
